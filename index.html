@@ -80,6 +80,77 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2018/10/13/你不知道的ES5继承和ES6继承/" title="你不知道的ES5继承和ES6继承" itemprop="url">你不知道的ES5继承和ES6继承</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="wang" target="_blank" itemprop="author">wang</a>
+		
+  <p class="article-time">
+    <time datetime="2018-10-13T15:40:20.000Z" itemprop="datePublished"> 发表于 2018-10-13</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p> &#160; &#160;含着劲跳糖来聊一下ES5继承和ES6继承的区别，在ES6还没有发布的时候 ，js定义类是以函数的形式，例如  </p>
+<blockquote>
+<p>function TestFather() {<br>    this.aa = ‘aa’;<br>}<br>TestFather.prototype.getAA = function() {<br>   return this.aa<br>}</p>
+</blockquote>
+<p>&#160; &#160;而ES6 已经可以用关键class来定义个类 例如</p>
+<blockquote>
+<p>class TestFather {<br>constructor() {<br>  this.aa = ‘aa’;<br>}<br>   getAA() {<br>   return this.aa;<br> }<br>}<br>let father = new TestFather();<br>father.getAA();</p>
+</blockquote>
+<p>ES5中构造函数是function函数本身 而 ES6中构造函数 是constructor    函数，类似与java<br>接下来谈一下ES5继承和ES6继承<br>ES5继承是 </p>
+<blockquote>
+<p> function AA () {<br>    this.aa = ‘aa’<br>}<br>AA.prototype.getAA = function() {<br>    console.log(this)<br>    return this.aa<br>}<br>function BB() {<br>    AA.call(this)<br>}<br>BB.prototype = new AA()<br>BB.prototype.constructor = BB<br>let bb = new BB()<br>bb.getAA()  // log   BB { aa: ‘aa’ }</p>
+</blockquote>
+<p>而ES6的中继承</p>
+<blockquote>
+<p>class AA {<br>    constructor() {<br>        this.aa = ‘aa’<br>    }<br>    getAA() {<br>        console.log(this)<br>        return this.aa<br>    }<br>}<br>class BB extends AA {<br>    constructor() {<br>        super()<br>    }<br>}<br>let bb = new BB()  // log   BB { aa: ‘aa’ }<br>bb.getAA()</p>
+</blockquote>
+<p> &#160; &#160; ES6中子类继承父类的属性使用了super关键字,ES6语法实现是ES5的语法糖，表面上 ES6的类关键字和子类继承关键字 实现的结构和ES5继承一样  但是根本还是有差别的 其中ES5继承prototype属性是先实例化父类 直接继承  而 ES6实在实例化子类对象时继承父类prototype,即实例化父类。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/前端/">前端</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2017/08/01/javascript原型链/" title="javascript原型链" itemprop="url">javascript原型链</a>
   </h1>
   <p class="article-author">By
@@ -625,65 +696,6 @@ return objectExtend;
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/06/20/写课程设计-员工管理系统有感/" title="写课程设计-员工管理系统有感" itemprop="url">写课程设计-员工管理系统有感</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="wang" target="_blank" itemprop="author">wang</a>
-		
-  <p class="article-time">
-    <time datetime="2017-06-20T12:54:57.000Z" itemprop="datePublished"> 发表于 2017-06-20</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <blockquote>
-<p> 最近有两个星期的的课程设计  课题好多 选了一个自己能做出来的 那就是员工管理系统了<br> 先设计简单的需求 写完再改 毕竟只有两个星期 要是写不完就尴尬了 其实肯定能写完 但是总该留点时间复习考试 自己得记性本来就不太好 还不好好的多看一下 哈哈   </p>
-</blockquote>
-<p>有了之前开发新闻发布系统的经验 这个员工管理系统的开发也就不算很难 如果要是扣细节的话 花费的时间估计也是不少  先简单的来写 后面的的在说 先实现员工和部门之间的关系 再实现员工添加 员工信息的修改 部门的添加  两个表我感觉足够了 先实现 后完善 是不是敏捷开发的思想(当然不仅仅这些) 哈哈<br>由于之前有了开发springboot的经验 自己这次搭建剩了不少力气 今天也就实现了框架的搭建 和 实体类  又温习了一遍springData<br>Repository模块中的<br>接口继承 CrudRepository&lt;实体类,long&gt;<br>Service模块中<br>依赖注入 所需要的Repository<br>本人强烈建议直接用 CrudRepository中的save()来进行insert操作<br>不建议用Query 和 Modifying   </p>
-<p>####写到一半自习室要关了 算了 回去写<br>当然别忘了 Transition注解  如果失败 可以事务回滚<br>当然我在一对多和一对一注解中的级联操作有了疑问<br>其中注解中有两个关键属性  cascade 和fetch<br>cascade 中有五个属性  ALL, PERSIST, MERGE, REMOVE, REFRESH, DETACH;<br>这个五个属性和删除更改操作有关<br>在员工对部门多对一的情况下<br>如果所关联的部门被删除 则当前员工外键setNull<br>如果所关联的部门发生更改 则当前员工也应该跟着修改<br>那就应该选择MEGER属性和 DETACH  不要选 All<br>注意的事项就这些<br>–完</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/杂文/">杂文</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/per_page        分页目录/2/">2</a><a class="page-number" href="/per_page        分页目录/3/">3</a><a class="page-number" href="/per_page        分页目录/4/">4</a><a class="extend next" rel="next" href="/per_page        分页目录/2/">Next<span></span></a>
@@ -704,7 +716,7 @@ return objectExtend;
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/前端/" title="前端">前端<sup>11</sup></a></li>
+				<li><a href="/tags/前端/" title="前端">前端<sup>12</sup></a></li>
 			
 		
 			
@@ -732,7 +744,7 @@ return objectExtend;
 			
 		
 			
-				<li><a href="/tags/移动端/" title="移动端">移动端<sup>1</sup></a></li>
+				<li><a href="/tags/js库/" title="js库">js库<sup>1</sup></a></li>
 			
 		
 			
@@ -744,7 +756,7 @@ return objectExtend;
 			
 		
 			
-				<li><a href="/tags/js库/" title="js库">js库<sup>1</sup></a></li>
+				<li><a href="/tags/java-ORM框架/" title="java ORM框架">java ORM框架<sup>1</sup></a></li>
 			
 		
 			
@@ -752,7 +764,7 @@ return objectExtend;
 			
 		
 			
-				<li><a href="/tags/java-ORM框架/" title="java ORM框架">java ORM框架<sup>1</sup></a></li>
+				<li><a href="/tags/移动端/" title="移动端">移动端<sup>1</sup></a></li>
 			
 		
 			
@@ -815,7 +827,7 @@ return objectExtend;
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo"></a>© 2018
+		Powered © 2018
 		
 		<a href="/about" target="_blank" title="wang">wang</a>
 		

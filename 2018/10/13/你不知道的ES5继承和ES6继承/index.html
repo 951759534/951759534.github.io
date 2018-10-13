@@ -1,28 +1,28 @@
 
-  
-    <!DOCTYPE HTML>
+ <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   
-    <title>tags | 王帅的博客</title>
+    <title>你不知道的ES5继承和ES6继承 | 王帅的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="wang">
     
 
     
-    <meta name="description" content="博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https://951759534.github.io/tags/index.html">
+    <meta name="description" content="&amp;#160; &amp;#160;含着劲跳糖来聊一下ES5继承和ES6继承的区别，在ES6还没有发布的时候 ，js定义类是以函数的形式，例如    function TestFather() {    this.aa = ‘aa’;}TestFather.prototype.getAA = function() {   return this.aa}  &amp;#160; &amp;#160;而ES6 已经可以用关键">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="你不知道的ES5继承和ES6继承">
+<meta property="og:url" content="https://951759534.github.io/2018/10/13/你不知道的ES5继承和ES6继承/index.html">
 <meta property="og:site_name" content="王帅的博客">
-<meta property="og:description" content="博客">
+<meta property="og:description" content="&amp;#160; &amp;#160;含着劲跳糖来聊一下ES5继承和ES6继承的区别，在ES6还没有发布的时候 ，js定义类是以函数的形式，例如    function TestFather() {    this.aa = ‘aa’;}TestFather.prototype.getAA = function() {   return this.aa}  &amp;#160; &amp;#160;而ES6 已经可以用关键">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-11T05:04:06.038Z">
+<meta property="og:updated_time" content="2018-10-13T15:41:21.893Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
-<meta name="twitter:description" content="博客">
+<meta name="twitter:title" content="你不知道的ES5继承和ES6继承">
+<meta name="twitter:description" content="&amp;#160; &amp;#160;含着劲跳糖来聊一下ES5继承和ES6继承的区别，在ES6还没有发布的时候 ，js定义类是以函数的形式，例如    function TestFather() {    this.aa = ‘aa’;}TestFather.prototype.getAA = function() {   return this.aa}  &amp;#160; &amp;#160;而ES6 已经可以用关键">
 
     
     <link rel="alternative" href="/atom.xml" title="王帅的博客" type="application/atom+xml">
@@ -37,9 +37,9 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
-      <body>
-        <header>
-          
+  <body>
+    <header>
+      
 <div>
 		
 			<div id="imglogo">
@@ -72,32 +72,61 @@
 				</ul>
 			</nav>			
 </div>
-        </header>
-        <div id="container">
-          <div id="main" class="page" itemscope itemprop="blogPost">
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
   
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/tags/index.html" title="tags" itemprop="url">tags</a>
+      <a href="/2018/10/13/你不知道的ES5继承和ES6继承/" title="你不知道的ES5继承和ES6继承" itemprop="url">你不知道的ES5继承和ES6继承</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="wang" target="_blank" itemprop="author">wang</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-02T14:12:55.000Z" itemprop="datePublished"> 发表于 2017-06-02</time>
+    <time datetime="2018-10-13T15:40:20.000Z" itemprop="datePublished"> 发表于 2018-10-13</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
-		  
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p> &#160; &#160;含着劲跳糖来聊一下ES5继承和ES6继承的区别，在ES6还没有发布的时候 ，js定义类是以函数的形式，例如  </p>
+<blockquote>
+<p>function TestFather() {<br>    this.aa = ‘aa’;<br>}<br>TestFather.prototype.getAA = function() {<br>   return this.aa<br>}</p>
+</blockquote>
+<p>&#160; &#160;而ES6 已经可以用关键class来定义个类 例如</p>
+<blockquote>
+<p>class TestFather {<br>constructor() {<br>  this.aa = ‘aa’;<br>}<br>   getAA() {<br>   return this.aa;<br> }<br>}<br>let father = new TestFather();<br>father.getAA();</p>
+</blockquote>
+<p>ES5中构造函数是function函数本身 而 ES6中构造函数 是constructor    函数，类似与java<br>接下来谈一下ES5继承和ES6继承<br>ES5继承是 </p>
+<blockquote>
+<p> function AA () {<br>    this.aa = ‘aa’<br>}<br>AA.prototype.getAA = function() {<br>    console.log(this)<br>    return this.aa<br>}<br>function BB() {<br>    AA.call(this)<br>}<br>BB.prototype = new AA()<br>BB.prototype.constructor = BB<br>let bb = new BB()<br>bb.getAA()  // log   BB { aa: ‘aa’ }</p>
+</blockquote>
+<p>而ES6的中继承</p>
+<blockquote>
+<p>class AA {<br>    constructor() {<br>        this.aa = ‘aa’<br>    }<br>    getAA() {<br>        console.log(this)<br>        return this.aa<br>    }<br>}<br>class BB extends AA {<br>    constructor() {<br>        super()<br>    }<br>}<br>let bb = new BB()  // log   BB { aa: ‘aa’ }<br>bb.getAA()</p>
+</blockquote>
+<p> &#160; &#160; ES6中子类继承父类的属性使用了super关键字,ES6语法实现是ES5的语法糖，表面上 ES6的类关键字和子类继承关键字 实现的结构和ES5继承一样  但是根本还是有差别的 其中ES5继承prototype属性是先实例化父类 直接继承  而 ES6实在实例化子类对象时继承父类prototype,即实例化父类。</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/前端/">前端</a>
+  </div>
 
 </div>
 
@@ -105,7 +134,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://951759534.github.io/tags/index.html" data-title="tags | 王帅的博客" data-tsina="undefined" class="share clearfix">
+	  <div data-url="https://951759534.github.io/2018/10/13/你不知道的ES5继承和ES6继承/" data-title="你不知道的ES5继承和ES6继承 | 王帅的博客" data-tsina="undefined" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -116,13 +145,122 @@
    	       
 	</article>
 	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/08/01/javascript原型链/"  title="javascript原型链">
+ <strong>下一篇：</strong><br/> 
+ <span>javascript原型链
+</span>
+</a>
+</div>
+
+</nav>
+
 	
 
 
 
 </div>  
-        </div>
-        <footer><div id="footer" >
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/前端/" title="前端">前端<sup>12</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/杂文/" title="杂文">杂文<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端安全/" title="前端安全">前端安全<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/闲文/" title="闲文">闲文<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端-js/" title="前端 js">前端 js<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/node/" title="node">node<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/js库/" title="js库">js库<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/移动端-前端/" title="移动端 前端">移动端 前端<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java-ORM框架/" title="java ORM框架">java ORM框架<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面试笔记/" title="面试笔记">面试笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/移动端/" title="移动端">移动端<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/开发思想/" title="开发思想">开发思想<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端-js库/" title="前端 js库">前端 js库<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
 	
 	<div class="line">
 		<span></span>
@@ -165,7 +303,7 @@
 		</p>
 </div>
 </footer>
-        <script src="/js/jquery-2.0.3.min.js"></script>
+    <script src="/js/jquery-2.0.3.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
@@ -209,8 +347,36 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
   });
 });
 </script>
@@ -335,6 +501,5 @@ var _hmt = _hmt || [];
 
 <!-- Tiny_search End -->
 
-      </body>
-     </html>
-     
+  </body>
+</html>
